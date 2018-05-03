@@ -1,0 +1,39 @@
+
+17,June,2004
+
+
+	 
+      Random Number Gen V1.1 (Programmed by Burt and Daniel) This will generate X number of Random Numbers between 1 and 6, and will then tell you how many times it hit the numbers 1, 2, 3, 4, 5 and 6. Lbl 1 ClrText “How many times?” ?-
+
+16,June,2004
+
+
+	 
+       Here is the first part in what i hope to be a long running series of programs for the Casio CFX-9850BG Plus Graphics Calculator.   Random Number generator Ver 1.0 (Engineered by Burt)  ClrText Int 6Ran#+1-
+
+09,June,2004
+
+
+	 
+       Read  Windows Redistry Edits  first!    Create a hidden user account:  Navigate to: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsNT\CurrentVersionWinlogon\SpecialAccounts\UserList Right-click the UserList key folder and choose "new DWORD value" Rename the value "(Put username Here)"  Right-click the new user value, choose Modify, and change the value from "0" to "1".   Enable/Disable Error Reporting  Navigate to: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PCHealth\ErrorReporting Right-click the ErrorReporting key folder and choose "new DWORD value" Rename the value "DoReport"  Right-click the new user value, choose Modify, and choose the value, "0"(Dont report) or "1"(Report)   Show hidden Operating System Files   Note: This is not the same as showing Hidden Files and Folders. Hidden Files and Folders are not the same as Hidden Operating System Files. Hidden Files and Folders uses the Value Name of "Hidden" where Hidden Operating System Files uses the Value Name of "ShowSuperHidden" in the registry.  Navigate to: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced Right-click the Advanced key folder and choose "new DWORD value" Rename the value "ShowSuperHidden"  Right-click the new user value, choose Modify, and change the value from "0" to "1".   Remove shared documents folder  Navigate to: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\ExplorerMyComputer\NameSpace\DelegateFolders Delete the Key: {59031a47-3f72-44a7-89c5-5595fe6b30ee}   Enable/Disable Task Manager  Navigate to: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\System Right-click the System key folder and choose "new DWORD value" Rename the value "DisableTaskMgr"  Right-click the DisableTaskMgr value, choose Modify, and change the value from "0"(Enabled) to "1"(Disabled).  More to come :)
+     
+    
+
+
+08,June,2004
+
+
+	 
+      To do all these you need to run Registry Edit. To do this go to Run then type in "regedit"  NOTE: I cannot be held responsible if these edits and all others posted provide negative effects for your computer.    Homepage Lock:  Navigate to: HKEY_CURRENT_USER\Software\Policies\Microsoft Right-click the Microsoft key folder, click New, and choose Key. Name it Internet Explorer. Right-click the Internet Explorer key folder, click New, and choose Key. Name it Control Panel. Right-click the Control Panel key folder and choose "new DWORD value" Rename the value "Homepage."  Right-click the Homepage value, choose Modify, and change the value from "0" to "1".   Add Administrator to Normal Windows log on:  Naviagte to: HKEY_LOCALMACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\SpecialAccounts\UserList Right-click on the UserList key folder and choose "New DWORD value" Rename the value "Administrator" Right-click the Administrator value, choose Modify, and change the value from "0" to "1".   Close programs not responding at shutdown:  For   all   users Navigate to: HKEY_USERS\.DEFAULT\Control Panel\Desktop Right-click on the Desktop key folder and choose "New String Value" Rename this value "AutoEndTasks" Right-click on the AutoEndTasks value, choose Modify and change the value from "0" to "1".  For   individual   users Navigate to: HKEY_CURRENT_USER\.DEFAULT\Control Panel\Desktop Right-click on the Desktop key folder and choose "New String Value" Rename this value "AutoEndTasks" Right-click on the AutoEndTasks value, choose Modify and change the value from "0" to "1".   To back up you registry follow these easy steps: (XP only)   1. Click Start 
+
+
+29,June,2004
+
+
+	 
+      *********************************************************************************************  How To Display The Registered Computer Owners Name   Private Declare Function RegOpenKey Lib "advapi32.dll" Alias "RegOpenKeyA" (ByVal hKey As Long, ByVal lpSubKey As String, phkResult As Long) As Long   Private Declare Function RegQueryValueEx Lib "advapi32.dll" Alias "RegQueryValueExA" (ByVal hKey As Long, ByVal lpValueName As String, ByVal lpReserved As Long, lpType As Long, ByVal lpData As String, lpcbData As Long) As Long     Private Const REG_SZ = 1     Private Const LOCALMACHINE = &H80000002     '***** To use this function use Call GET     '     REGOWNERNAME, then use it as a variable.     '     EX - MsgBox GETREGOWNERNAME   Private Function GETREGOWNERNAME() As String     Dim nBufferKey As Long     Dim nBufferName As String     nBufferName = Space(256)     RegOpenKey LOCALMACHINE, "SOFTWARE\Microsoft\Windows\CurrentVersion", nBufferKey     RegQueryValueEx nBufferKey, "RegisteredOwner", 0, REG_SZ, nBufferName, Len(nBufferName)     GETREGOWNERNAME = nBufferName End Function ********************************************************************************************
+     
+    
+
+
+

@@ -1,0 +1,23 @@
+
+01,June,2004
+
+
+    
+       
+      Exercise for Computer Networking Lab: Lab 02  Exercise for ping Q1.Determine the MTU (maximum transmission unit) of your network Hint: gradually increase your packet/buffer size Hint: remember not to fragment!  A: PING kr.yahoo.com		 SIZE	RTT	 100	185	 200	187	 300	185	 400	185	 500	329	 600	343	 700	332	 800	349	 900	356	 1000	347	 1100	357	 1200	353	 1300	333	 1400	356  Q2.Determine the relationship between packet size and RTT (get the least one of 4 pings from each packet size)? Hint: collect all RTTs and plot them in EXCEL (x-axis is increasing packet size and y-axis is RTT)  A:y = -2.0989x^2 + 46.189x + 105.54  Exercise for ping/traceroute/pathping Q3.Ping/Traceroute(tracert) one site from Taiwan, China, Japan, U.S., France and Australia. (use online visualroute to help you identify their geographical location, http://visualroute.visualware.com/) and write down their RTT and hop counts  A:  urlLink Taiwan YAHOO :13hops, RTT:27ms.  urlLink China YAHOO :14hops, RTT:65ms.  urlLink Japan YAHOO :16hops, RTT:68ms.  urlLink U.S. YAHOO :16hops, RTT:163ms.  urlLink France YAHOO :19hops, RTT:250ms.  urlLink Australia YAHOO :20hops, RTT:169ms.  Q4.pathping one of the site you find above  A: C:\Documents and Settings\eeuser
+
+01,June,2004
+
+
+    
+       
+      Q1: Define RFC (Request for Comments). A1: Request For Comments(網路技術文件) 使用說明  /cdrom/rfc/ 含(製作當天)最新的 rfc 完整文件，這些文件為網路的使用提供了 參考的標準(很多已成為實際的標準)，無論想寫網路程式，或想更徹底的利用網路資 源，rfc 都是不可錯過的參考資料。  典型的利用方式為: less /cdrom/rfc/rfc-index.txt  流覽此檔可快速找到自己想要的資料，號碼愈大的代表愈新(近期推出)的文件，此份 列表號碼由大至小排列，這也是建議的查詢順序，對於同一種應用，隨著時間不斷的 發展改良，會產生更新、更合用的「建議標準」，這些新標準有較大的號碼，有些會 取代掉先前(小號碼)的文件，如，新出的 RFC 1036 取代掉先前的 RFC 0850。  舉例來說，想查查 smtp (SIMPLE MAIL TRANSFER PROTOCOL) 相關的資料，以更 詳細了解 internet mail 運作模式，由 less /cdrom/rfc/rfc-index.txt 查得 (-i 切到 case-Insensitive mode 後 /mail transfer) -
+
+01,June,2004
+
+
+    
+       
+      Q1.Find the IP of your machine and MAC address of your network interface card and gateway IP in your local network. Check http://standards.ieee.org/regauth/oui/index.shtml to compare its OUI with that has been registered. (hint: use ipconfig/ifconfig to get your IP; use arp to get your MAC address) 1. two IPs, 2. two MAC address, 3. two MAC’s registered OUI  A1. my ip :140.112.207.223 my MAC:00-E0-18-70-9C-03 00-E0-18   (hex)		ASUSTEK COMPUTER INC. 00E018     (base 16)		ASUSTEK COMPUTER INC. 				150 LI-TE RD. 				PEITOU, TAIPEI   				TAIWAN, REPUBLIC OF CHINA  C:\
+
+

@@ -1,0 +1,101 @@
+
+19,June,2004
+
+
+    
+        [gcc, egcs] use options :  -O3 -s  when compile your code to optimize object code (intermediate files) and strip all unnecessary comments  [LINUX] Also you can type in shell :  strip -g -s EXE_FILE  will give you the same effect as add options describe above 
+    
+    
+
+
+18,June,2004
+
+
+    
+        Cast any value that would be assigned to a variable, especially for pointer type ( void* )  Make sure to have same type while comparing two variables (values) avoiding warning message produced when compile the source code using gcc (NOT egcs). To get all warning message might caused unpredictable errors, use option  -Wall  while compiling 
+    
+    
+
+
+18,June,2004
+
+
+    
+       Microsoft provided library CRTDBG to detect memory leak in source code. Here is an example how to detect memory leak using CRTDBG:         #include &lt;stdio.h&gt;        #ifdef _DEBUG       #include &lt;crtdbg.h&gt;       #include &lt;string.h&gt;       #include &lt;malloc.h&gt;       #define  SET_CRT_DEBUG_FIELD(a)                   _CrtSetDbgFlag((a) | _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG))       #define  CLEAR_CRT_DEBUG_FIELD(a)                   _CrtSetDbgFlag(~(a) &amp; _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG))       #else       #define  SET_CRT_DEBUG_FIELD(a)   ((void) 0)       #define  CLEAR_CRT_DEBUG_FIELD(a) ((void) 0)       #endif        int main(int argc, char *argv[])       {         // variable         char *p;        #ifdef _DEBUG         _CrtMemState s1, s2, s3;         _CrtSetReportMode( _CRT_WARN, _CRTDBG_MODE_FILE );         _CrtSetReportFile( _CRT_WARN, _CRTDBG_FILE_STDOUT );         _CrtSetReportMode( _CRT_ERROR, _CRTDBG_MODE_FILE );         _CrtSetReportFile( _CRT_ERROR, _CRTDBG_FILE_STDOUT );         _CrtSetReportMode( _CRT_ASSERT, _CRTDBG_MODE_FILE );         _CrtSetReportFile( _CRT_ASSERT, _CRTDBG_FILE_STDOUT );         _CrtMemCheckpoint( &amp;s1 );       #endif          // do some work here         p = (char *)malloc(sizeof(char)*100);         strcpy(p,"Hello world");         printf("%s\n",p);         //free(p);	// Seolah2 kita lupa mem-free        #ifdef _DEBUG         _CrtMemCheckpoint( &amp;s2 );         if ( _CrtMemDifference( &amp;s3, &amp;s1, &amp;s2 ) ){           printf("\n------------\nOuups! leak detection.\n");           _CrtMemDumpStatistics( &amp;s3 );         }else{           printf("\n------------\nCongratulation! no leak detection.\n");         }       #endif         return 0;       } // end of main   Use option /MTd to compile the code, e.g. cl memdetect.c /MTd 
+    
+    
+
+
+18,June,2004
+
+
+    
+       You can add a description about a service and displayed in Description column in Services Console (MMC) by adding the following codes after created a service (CreateService()) successfully:         #define SZDESCRIPTION               "A description about the service"        LPSERVICE_DESCRIPTION lpInfo;        // change service's description       lpInfo = (LPSERVICE_DESCRIPTION)malloc(sizeof(SERVICE_DESCRIPTION));       lpInfo-
+
+18,June,2004
+
+
+    
+       You can use attribute  title  at tag  anchor  (&lt;a&gt;&lt;/a&gt;) to display a custom tooltip as following:   &lt;a href=&quot;a&quot; title=&quot;This is a title test&quot;&gt;Title Test&lt;/a&gt;    
+    
+    
+
+
+18,June,2004
+
+
+    
+       If you are amazed with Google toolbar which is one of its feature is googling by right clicking on selected text, you can make it by your self.   What I Need?  1. Registry Editor, commonly you just simply typing regedit on Start | Run 2. Text/HTML editor to create an HTML file   How?  1. Run regedit from Start | Run 2. Locate section: HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\MenuExt 3. Right click, select menu New | Key 4. Edit new string (New Key #1) with &Google Search for instance. This time, we will create context selective menu to do googling for selected words. Character &amp; indicates shortcut, in this case 'G' as a shortcut. 5. Click &Google Search. Double click on entry (Default), and fill: d:\comm\google-search.html for instance. This indicates location of file which will be executed by if selecting menu "Google Search". 6. Create new Entry, right click on right panel after entry (Default): New -
+
+18,June,2004
+
+
+    
+       To whom are bored with MS Windows 2000/XP default logo with your favourite one. You may simply change it easily.   What I Need?  1. Resource Hacker ( urlLink http://www.users.on.net/johnson/resourcehacker/ ) 2. Image Editor, such as PhotoShop Pro, Adobe Photoshop, etc.    How?  1. Copy %WINNT\system32\ntoskrnl.exe to other name, mine.exe for instance (at the same folder) 2. Run Resource Hacker. From File | Open, open file mine.exe 3. Expand tree Bitmap -
+
+18,June,2004
+
+
+    
+       You may create shortcut/hotkey for a field in a web form by using tag label and attribute id of a form input-type (field). Please notice to following bold written text!   CODE    &lt;tr&gt;   &lt;td align="right" width="43%"&gt;&lt;img src="frontpage/imgname.gif" width="80" height="12"&gt;&lt;/td&gt;   &lt;td width="57%"&gt;      &lt;label for="user" accesskey="U"&gt;&lt;/label&gt; &lt;input type="text" name="user"  id="user"  class="input" size="15"&gt;   &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt;   &lt;td align="right" width="43%"&gt;&lt;img src="frontpage/imgpass.gif" width="80" height="12"&gt;&lt;/td&gt;    &lt;td width="57%"&gt;      &lt;label for="pass" accesskey="P"&gt;&lt;/label&gt; &lt;input type="password" name="pass"  id="pass"  class="input" size="15"&gt;   &lt;/td&gt; &lt;/tr&gt;   By above code, you may using  ALT+U  to move the pointer into a form field named  user  or  ALT+P  to move the pointer into a form field named  pass . 
+    
+    
+
+
+18,June,2004
+
+
+    
+       There is a difference to close a scoket connection on Windows and Linux.  On Linux, we may simply use  close()  function to close a socket connection, but you  CAN NOT  use this function on Windows. Use  closesocket()  function instead. If using close() function on Windows to close a socket connection, it will remain  Close Wait  connection status means unable to close socket successfully. 
+    
+    
+
+
+18,June,2004
+
+
+    
+       Any one can help? Or Google itself would like invite me? 
+    
+    
+
+
+15,July,2004
+
+
+    
+       Some browsers such as MSIE opening a document automatically without asking to save or open the document. Some people including me it is very annoying. So how to make an application which acts to send a document to a web client such as web browser always download the document rather open it?  There is a simple way to do that by using   content-type: application/octet-stream   HTTP header instead of using proper MIME-TYPE content-type for a web document to be sent. Most web browsers will downloaded a web document with this content-type including MSIE.  
+    
+    
+
+
+12,July,2004
+
+
+    
+       You will be mad if you can't locate error in your program especially finally you find out that the cause is only not set your dynamic allocated variable is not set to NULL after freed it, won't you?  There are some tips for freeing a dynamic allocated variable not to cause any trouble in future: 1. Use the same function call to allocate and deallocate a dynamic allocated variable in your whole program. 2. Check if a dynamic allocated variable is NULL or not before freeing it. Please ensure you don't free a dynamic allocated variable values NULL even some function call handle NULL condition. 3. Set a freed dynamic allocated variable to NULL. This will not cause any error if this code is accessed rarely and not repetitively. By experience, this will cause error for repetitive condition.    if (sTemp) {    free(sTemp);    sTemp = NULL; }     Reference  Based on my experiences  
+    
+    
+
+
+
